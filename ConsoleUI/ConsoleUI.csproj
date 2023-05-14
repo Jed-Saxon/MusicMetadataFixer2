@@ -9,7 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MetadataFixer\MetadataFixer.csproj" />
+        <ProjectReference Include="..\MetadataFixer\MetadataFixer.csproj"/>
     </ItemGroup>
 
 </Project>

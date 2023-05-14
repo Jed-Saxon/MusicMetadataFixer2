@@ -1,12 +1,11 @@
-﻿using TagLib;
-using File = System.IO.File;
+﻿using File = TagLib.Flac.File;
 
 namespace MetadataFixer;
 
 public static class MetadataFixer
 {
     public static event Action<string> OnError;
-    
+
     public static void Fix(DirectoryInfo start, DirectoryInfo end)
     {
         // Loop through all files
@@ -22,22 +21,22 @@ public static class MetadataFixer
     {
         if (!file.Exists)
         {
-            OnError?.Invoke($"Could not find the file at the path: {file.FullName}");
+            OnError($"Could not find the file at the path: {file.FullName}");
             return null;
         }
 
         if (file.Extension != ".flac")
         {
-            OnError?.Invoke($"The extension '{file.Extension}' is not supported!");
+            OnError($"The extension '{file.Extension}' is not supported!");
             return null;
         }
-        
-        TagLib.Flac.File flacFile = new(file.FullName);
+
+        File flacFile = new(file.FullName);
         return new Song(
-            file, 
-            flacFile.Tag.JoinedAlbumArtists, 
-            flacFile.Tag.Album, 
-            (int)flacFile.Tag.Track, 
+            file,
+            flacFile.Tag.JoinedAlbumArtists,
+            flacFile.Tag.Album,
+            (int)flacFile.Tag.Track,
             flacFile.Tag.Title
         );
     }
@@ -49,8 +48,9 @@ public static class MetadataFixer
 
         DirectoryInfo albumDir = new($"{end.FullName}/{song.Artist}/{song.Album}");
         if (!albumDir.Exists) albumDir.Create();
-        
-        string newFileName = $"{end.FullName}/{song.Artist}/{song.Album}/{song.TrackNumber} - {song.Title}{song.OldFile.Extension}";
+
+        string newFileName =
+            $"{end.FullName}/{song.Artist}/{song.Album}/{song.TrackNumber} - {song.Title}{song.OldFile.Extension}";
         song.OldFile.CopyTo(newFileName);
     }
 }
