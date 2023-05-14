@@ -9,3 +9,6 @@ You should build from source as I have not released a standalone application yet
 2. Bulid the project: `dotnet build -c Release;`
 3. CD into the build output: `cd ConsoleUI/bin/Release/net7.0`
 4. Run the program: `dotnet ConsoleUI.dll`
+
+## Help
+I have no idea what to call this project as the name is misleading. It doesn't 'fix' metadata. It does fix the files based on the metadata from each file. However, I don't know what repo name I could use that doesn't sound clunky
