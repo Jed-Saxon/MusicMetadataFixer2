@@ -11,4 +11,4 @@ You should build from source as I have not released a standalone application yet
 4. Run the program: `dotnet ConsoleUI.dll`
 
 ## Help
-I have no idea what to call this project as the name is misleading. It doesn't 'fix' metadata. It does fix the files based on the metadata from each file. However, I don't know what repo name I could use that doesn't sound clunky
+The name of this repo is misleading. If anyone has any ideas on what to name it, please tell me!
